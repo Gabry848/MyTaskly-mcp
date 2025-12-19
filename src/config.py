@@ -1,0 +1,34 @@
+"""Configuration management for MyTaskly MCP Server."""
+
+from pydantic_settings import BaseSettings, SettingsConfigDict
+from typing import Optional
+
+
+class Settings(BaseSettings):
+    """MCP Server settings loaded from environment variables."""
+
+    # FastAPI Server Configuration
+    fastapi_base_url: str = "http://localhost:8080"
+    fastapi_api_key: str = "test_api_key_123"
+
+    # JWT Configuration (MUST match FastAPI server)
+    jwt_secret_key: str
+    jwt_algorithm: str = "HS256"
+    mcp_audience: str = "mcp://mytaskly-mcp-server"
+
+    # MCP Server Configuration
+    mcp_server_name: str = "MyTaskly MCP Server"
+    mcp_server_version: str = "0.1.0"
+
+    # Logging
+    log_level: str = "INFO"
+
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        case_sensitive=False
+    )
+
+
+# Global settings instance
+settings = Settings()

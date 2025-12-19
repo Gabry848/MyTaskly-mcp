@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip show:*)",
+      "Bash(python -c:*)",
+      "Bash(python -m tests.manual_test:*)",
+      "Bash(curl:*)"
+    ]
+  }
+}
