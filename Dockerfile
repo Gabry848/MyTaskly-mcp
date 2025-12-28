@@ -33,9 +33,9 @@ USER appuser
 # Expose port (Railway will override this with PORT env variable)
 EXPOSE 8000
 
-# Health check
+# Health check - SSE endpoint provides a health endpoint
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-    CMD python -c "import sys; sys.exit(0)"
+    CMD python -c "import urllib.request; import os; urllib.request.urlopen(f'http://localhost:{os.getenv(\"PORT\", 8000)}/sse')"
 
 # Run the application
 CMD ["python", "main.py"]

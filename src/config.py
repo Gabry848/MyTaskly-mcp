@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     fastapi_api_key: str = "test_api_key_123"
 
     # JWT Configuration (MUST match FastAPI server)
-    jwt_secret_key: str
+    jwt_secret_key: str = "change-this-secret-key-in-production"
     jwt_algorithm: str = "HS256"
     mcp_audience: str = "mcp://mytaskly-mcp-server"
 
